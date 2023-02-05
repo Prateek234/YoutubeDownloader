@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Results</title>
+    <style>
+      /* Set the default font family and size */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+      }
+      
+      /* Center the title text */
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+      
+      /* Style the table */
+      table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 80%;
+        margin-top: 50px;
+      }
+      
+      /* Style the table headers */
+      th {
+        background-color: #eee;
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      /* Style the table cells */
+      td {
+        border: 1px solid #333;
+        padding: 8px;
+        min-width: 120px;
+        word-wrap: break-word;
+      }
+      
+      /* Style the submit button */
+      input[type="submit"] {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <table>
+      <tr>
+        <th>Song Name</th>
+        <th>Release Date</th>
+        <th>Description</th>
+        <th>Video ID</th>
+        <th>Download</th>
+      </tr>
+      <tr>
+        {% for key, value in song_details.items() %}
+          <td> {{ value }} </td>
+        {% endfor %}
+        <td>
+          <form action="/download" method="post">
+            <input type="hidden" name="video_id" value="{{ song_details.id }}">
+            <input type="submit" value="Download">
+          </form>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
